@@ -37,7 +37,7 @@ def clarify_with_user(state: AgentState) -> Command[Literal["write_research_brie
     structured_output_model = model.with_structured_output(ClarifyWithUser)
 
     # Invoke the model with clarification instructions
-    response = model.invoke([
+    response = structured_output_model.invoke([
         HumanMessage(content=clarify_with_user_instructions.format(
             messages = get_buffer_string(messages=state["messages"]),
             date = get_today_str()
